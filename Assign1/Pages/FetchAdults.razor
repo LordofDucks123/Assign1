@@ -1,0 +1,80 @@
+﻿@page "/fetchadults"
+
+@using Models
+@using Assign1.Data 
+@using FileData
+@using System.IO
+@using System.Net.Http
+@using System.Text.Json
+
+
+@inject IAdult adultdata
+
+
+<h1>Adults</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+<br />
+
+<input placeholder="Search for First name" />
+<button class="btn btn-primary" @onclick="FilterByName">Filter</button>
+<br />
+<br />
+
+@if (adults == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Hair color</th>
+                <th>Eye Color</th>
+                <th>Age</th>
+                <th>Weight (C)</th>
+                <th>Height (F)</th>
+                <th>Sex</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var adult in adults)
+            {
+                <tr>
+                    <td>@adult.Id</td>
+                    <td>@adult.FirstName</td>
+                    <td>@adult.LastName</td>
+                    <td>@adult.HairColor</td>
+                    <td>@adult.EyeColor</td>
+                    <td>@adult.Age</td>
+                    <td>@adult.Weight</td>
+                    <td>@adult.Height</td>
+                    <td>@adult.Sex</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IList<Adult> adults;
+    private IList<Adult> allAdults;
+
+
+    private void FilterByName()
+    {
+
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        allAdults = adultdata.GetAdults();
+        adults = allAdults;
+
+    }
+}

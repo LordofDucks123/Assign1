@@ -1,0 +1,79 @@
+@page "/addadults"
+
+@using Models
+@using FileData
+@using Assign1.Data
+@using Microsoft.AspNetCore.Components
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inject IAdult adultdata
+
+
+<AuthorizeView Policy="1">
+    <h3>Hello @context.User.Identity.Name</h3>
+
+    <h5>Your security level is @context.User.FindFirst(claim => claim.Type.Equals("Level")).Value</h5>
+</AuthorizeView>
+
+
+<p>You need to have security level 4 or higher to add Adults!</p>
+
+<AuthorizeView Policy="SecurityLevel4" Context="authContext">
+
+    <EditForm Model="@newAdultItem" Context="formContext">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            User Id: <br />
+            <InputNumber @bind-Value="newAdultItem.Id" />
+        </div>
+        <div class="form-group">
+            First Name: <br />
+            <InputText @bind-Value="newAdultItem.FirstName" />
+        </div>
+        <div class="form-group">
+            Last Name: <br />
+            <InputText @bind-Value="newAdultItem.LastName" />
+        </div>
+        <div class="form-group">
+            Hair Color: <br />
+            <InputText @bind-Value="newAdultItem.HairColor" />
+        </div>
+        <div class="form-group">
+            Eye Color: <br />
+            <InputText @bind-Value="newAdultItem.EyeColor" />
+        </div>
+        <div class="form-group">
+            Age: <br />
+            <InputNumber @bind-Value="newAdultItem.Age" />
+        </div>
+        <div class="form-group">
+            Weight: <br />
+            <InputNumber @bind-Value="newAdultItem.Weight" />
+        </div>
+        <div class="form-group">
+            Height: <br />
+            <InputNumber @bind-Value="newAdultItem.Height" />
+        </div>
+        <div class="form-group">
+            Sex: <br />
+            <InputText @bind-Value="newAdultItem.Sex" />
+        </div>
+
+
+        <button class="btn btn-primary"  type="submit" >Add</button>
+
+    </EditForm>
+
+    @code { private Adult newAdultItem = new Adult();
+
+        private void AddNewAdult()
+        {
+            adultdata.AddAdult(newAdultItem);
+            NavigationManager.NavigateTo("/fetchAdults");
+        } }
+</AuthorizeView>
+
+@code{ }
