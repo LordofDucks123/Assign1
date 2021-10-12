@@ -27,6 +27,7 @@ namespace Assign1
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<IUserService, InMemoryUserService>();
+            services.AddScoped<IAdult, Methods>();
 
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 

@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Components;
 
 namespace Assign1.Data
 {
-    public class JsonData : IAdult
+    public class Methods : IAdult
     {
         private IList<Adult> adults;
         private FileContext fileContext;
         public string AdultFile = "adults.json";
 
-        public JsonData()
+        public Methods()
         {
             if (!File.Exists(AdultFile))
             {

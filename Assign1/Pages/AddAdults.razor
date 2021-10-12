@@ -10,10 +10,11 @@
 @inject IAdult adultdata
 
 
-<AuthorizeView Policy="1">
-    <h3>Hello @context.User.Identity.Name</h3>
 
-    <h5>Your security level is @context.User.FindFirst(claim => claim.Type.Equals("Level")).Value</h5>
+<AuthorizeView Context="context0">
+    <h3>Hello @context0.User.Identity.Name</h3>
+
+    <h5>Your security level is @context0.User.FindFirst(claim => claim.Type.Equals("Level")).Value</h5>
 </AuthorizeView>
 
 
@@ -21,7 +22,7 @@
 
 <AuthorizeView Policy="SecurityLevel4" Context="authContext">
 
-    <EditForm Model="@newAdultItem" Context="formContext">
+    <EditForm Model="newAdultItem" OnValidSubmit="AddNewAdult">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
@@ -63,17 +64,17 @@
         </div>
 
 
-        <button class="btn btn-primary"  type="submit" >Add</button>
+        <button class="btn btn-primary" type="submit">Add</button>
 
     </EditForm>
 
-    @code { private Adult newAdultItem = new Adult();
 
-        private void AddNewAdult()
-        {
-            adultdata.AddAdult(newAdultItem);
-            NavigationManager.NavigateTo("/fetchAdults");
-        } }
 </AuthorizeView>
 
-@code{ }
+@code { private Adult newAdultItem = new Adult();
+
+    private void AddNewAdult()
+    {
+        adultdata.AddAdult(newAdultItem);
+        NavigationManager.NavigateTo("/FetchAdults");
+    } }

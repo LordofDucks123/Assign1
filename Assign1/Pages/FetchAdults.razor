@@ -6,10 +6,7 @@
 @using System.IO
 @using System.Net.Http
 @using System.Text.Json
-
-
-@inject IAdult adultdata
-
+@using Models
 
 <h1>Adults</h1>
 
@@ -62,8 +59,8 @@ else
 }
 
 @code {
-    private IList<Adult> adults;
-    private IList<Adult> allAdults;
+    private IList<Adult> adults = new List<Adult>();
+    FileContext fileContext = new FileContext();
 
 
     private void FilterByName()
@@ -73,8 +70,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        allAdults = adultdata.GetAdults();
-        adults = allAdults;
-
+        adults = fileContext.Adults;
     }
 }
