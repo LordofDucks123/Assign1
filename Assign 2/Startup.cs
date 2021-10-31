@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Assign2.Data;
 
 namespace Assign_2
 {
@@ -32,6 +33,8 @@ namespace Assign_2
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Assign_2", Version = "v1" });
             });
+            services.AddScoped<IUserService, InMemoryUserService>();
+            services.AddScoped<IAdult, Methods>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
