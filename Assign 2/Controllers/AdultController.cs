@@ -7,10 +7,10 @@ using Assign2.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Assign_2.Controllers{
-
+    
     [ApiController]
     [Route("[controller]")]
-    public class AdultController : Controller
+    public class AdultController : ControllerBase
     {
         private IAdult methods;
 
