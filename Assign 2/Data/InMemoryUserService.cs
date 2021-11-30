@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Models;
+using ClassLibrary1.Models;
 using System.Threading.Tasks;
 
 namespace Assign2.Data{

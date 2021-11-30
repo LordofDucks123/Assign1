@@ -5,17 +5,16 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Net.Http;
-using Models;
-using FileData;
+using ClassLibrary1.Models;
 using Microsoft.AspNetCore.Components;
 using System;
 
-namespace Assign2.Data
+namespace Assign2
 {
     public class Methods : IAdult
     {
         private IList<Adult> adults;
-        private FileContext fileContext;
+        // private FileContext fileContext;
         public string AdultFile = "adults.json";
 
         public Methods()
@@ -45,14 +44,6 @@ namespace Assign2.Data
             string todoAsJson = JsonSerializer.Serialize(adults);
             File.WriteAllText(AdultFile, todoAsJson);
         }
-
-        private void WriteAdultsToFile()
-        {
-            string adultasJson = JsonSerializer.Serialize(adults);
-            File.WriteAllText(AdultFile, adultasJson);
-            fileContext.SaveChanges();
-        }
-
 
         public Adult Get(int id)
         {

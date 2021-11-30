@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Assign2.Data;
-using Models;
+using ClassLibrary1.Models;
 
 namespace Assign_2.Controllers
 {

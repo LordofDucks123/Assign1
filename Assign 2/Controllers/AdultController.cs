@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Models;
-using Assign2.Data;
+using ClassLibrary1.Models;
+using Assign2;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Assign_2.Controllers{

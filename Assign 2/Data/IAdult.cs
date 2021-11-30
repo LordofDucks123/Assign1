@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Models;
+using ClassLibrary1.Models;
 
-namespace Assign2.Data
+namespace Assign2
 {
     public interface IAdult
     {
