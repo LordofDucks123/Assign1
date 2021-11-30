@@ -32,12 +32,6 @@ namespace Assign2.Data
             }
         }
 
-        public IList<Adult> GetAdults()
-        {
-            List<Adult> tmp = new List<Adult>(adults);
-            return tmp;
-        }
-
         public async Task<Adult> AddAdult(Adult adult)
         {
             adults.Add(adult);
@@ -82,13 +76,6 @@ namespace Assign2.Data
         }
         public async Task<IList<Adult>> GetAdultsAsync()
         {
-            using HttpClient client = new HttpClient(); HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:44371");
-
-            if (!responseMessage.IsSuccessStatusCode) throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
-            string result = await responseMessage.Content.ReadAsStringAsync();
-
-            List<Adult> adults = JsonSerializer.Deserialize<List<Adult>>(result, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-
             return adults;
         }
     }

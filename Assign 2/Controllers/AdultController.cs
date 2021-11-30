@@ -19,11 +19,15 @@ namespace Assign_2.Controllers{
             this.methods = methods;
         }
         [HttpGet]
-        public async Task<ActionResult<IList<Adult>>> GetAdults([FromQuery] int? userId)
+        public async Task<ActionResult<IList<Adult>>> GetAdults([FromQuery] int? adultId)
         {
             try
             {
                 IList<Adult> adults = await methods.GetAdultsAsync();
+                if(adultId != null)
+                {
+                    adults = adults.Where(adult => adult.Id == adultId).ToList();
+                }
                 return Ok(adults);
             }
             catch (Exception e)
